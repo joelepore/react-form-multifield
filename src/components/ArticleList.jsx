@@ -9,7 +9,11 @@ const ArticleList = ({ articles, className, onDelete, onEdit }) => {
         id={article.id}
         key={`art-${article.id}`}
         title={article.title}
+        content={article.content}
         isComplete={article.isComplete}
+        image={article.image}
+        category={article.category}
+        tags={article.tags}
         onDelete={onDelete}
         onEdit={onEdit}
       />

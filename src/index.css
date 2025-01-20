@@ -39,3 +39,16 @@ body {
 .article-item:last-child {
   border: none;
 }
+
+.article-content {
+  display: grid;
+  grid-template-columns: max-content 1fr 0.1fr;
+  align-items: center;
+  gap: 1rem;
+}
+
+.article-sub-info {
+  display: grid;
+  grid-template-columns: 100px 100px 1fr;
+  align-items: center;
+}

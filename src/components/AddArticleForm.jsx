@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import Card from "./Card"
 import Button from "./partials/Button"
 import { FaWandMagicSparkles } from "react-icons/fa6";
@@ -50,10 +50,6 @@ const AddArticleForm = ({ onSubmit }) => {
     })
   }
 
-  useEffect(() => {
-    console.log(formData);
-  }, [formData]);
-
   const handleSubmit = (e) => {
     e.preventDefault();
     onSubmit(formData)
@@ -63,7 +59,7 @@ const AddArticleForm = ({ onSubmit }) => {
 
   const getTitleSuggestionFromGemini = async () => {
     const result = await model.generateContent(prompt);
-    setFormData({ ...FormData, title: result.response.text() });
+    setFormData({ ...formData, title: result.response.text() });
   }
 
   return (
@@ -94,6 +90,7 @@ const AddArticleForm = ({ onSubmit }) => {
         <span className="mr-4">Contenuto</span>
         <textarea
           name="content"
+          value={formData.content}
           onChange={handleFormData}
           className="border border-neutral-300 rounded-lg px-1"
         ></textarea>
@@ -133,11 +130,11 @@ const AddArticleForm = ({ onSubmit }) => {
         {/* Category */}
         <span className="mr-4">Categoria</span>
         <select name="category" onChange={handleFormData}>
-          <option value="tecnologia">Tecnologia</option>
-          <option value="fitness">Fitness</option>
-          <option value="viaggi">Viaggi</option>
-          <option value="business">Business</option>
-          <option value="cucina">Cucina</option>
+          <option value="Tecnologia">Tecnologia</option>
+          <option value="Fitness">Fitness</option>
+          <option value="Viaggi">Viaggi</option>
+          <option value="Business">Business</option>
+          <option value="Cucina">Cucina</option>
         </select>
         {/* Tags */}
         <span className="mr-4">Tags</span>
