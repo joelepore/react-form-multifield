@@ -55,6 +55,7 @@ const AddArticleForm = ({ onSubmit }) => {
     <Card>
       <h2 className="text-xl font-medium text-center border-b border-neutral-300 py-4">Aggiungi un nuovo articolo</h2>
       <form className="p-4 article-form gap-y-4" onSubmit={handleSubmit}>
+        {/* Title */}
         <span className="mr-4">Titolo</span>
         <div className="flex items-center gap-2">
           <input
@@ -74,6 +75,7 @@ const AddArticleForm = ({ onSubmit }) => {
             <span className="tooltip-next">Fatti suggerire un titolo dall'AI</span>
           </div>
         </div>
+        {/* State */}
         <span className="mr-4">Stato</span>
         <div className="flex gap-2">
           <div>
@@ -97,7 +99,8 @@ const AddArticleForm = ({ onSubmit }) => {
             <label htmlFor="radio-completo" className="text-sm">Completo</label>
           </div>
         </div>
-        <span>Immagine</span>
+        {/* Image */}
+        <span className="mr-4">Immagine</span>
         <UnsplashImageFinder onImageSelect={handleFormData} />
         {formData.image &&
           <img
@@ -105,6 +108,16 @@ const AddArticleForm = ({ onSubmit }) => {
             alt="Immagine selezionata"
             className="col-start-2 aspect-square max-w-40 object-cover"
           />}
+        {/* Category */}
+        <span className="mr-4">Categoria</span>
+        <select name="category" onChange={handleFormData}>
+          <option value="tecnologia">Tecnologia</option>
+          <option value="fitness">Fitness</option>
+          <option value="viaggi">Viaggi</option>
+          <option value="business">Business</option>
+          <option value="cucina">Cucina</option>
+        </select>
+        {/* Add Button */}
         <Button className="col-span-2" text="Aggiungi" type="submit" />
       </form>
     </Card>
