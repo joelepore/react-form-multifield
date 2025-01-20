@@ -24,7 +24,12 @@ const UnsplashImageFinder = ({ onImageSelect }) => {
   }
 
   const handleImgClick = (imgUrl) => {
-    onImageSelect(imgUrl)
+    onImageSelect({
+      target: {
+        name: 'image',
+        value: imgUrl
+      }
+    })
     setIsPopupOpen(false);
   }
 
@@ -43,7 +48,7 @@ const UnsplashImageFinder = ({ onImageSelect }) => {
         <div className={`grid grid-cols-3 max-w-sm mt-2 gap-x-2`}>
           {searchResult.map(img => (
             <img
-              className="aspect-square"
+              className="aspect-square object-cover"
               key={img.id}
               src={img.url}
               onClick={() => handleImgClick(img.url)}
