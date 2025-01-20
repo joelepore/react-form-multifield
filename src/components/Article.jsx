@@ -8,29 +8,28 @@ const Article = ({ id, title, isComplete, content, image, category, tags, onDele
 
   const handleEdit = () => {
     setIsEditing(true);
+    onEdit(id);
   }
 
   const handleEditSubmit = () => {
     setIsEditing(false);
-    onEdit(id, articleTitle);
   }
 
-  const renderArticleTitle = () => {
-    return isEditing ?
-      <input
-        type="text"
-        value={articleTitle}
-        onChange={e => setArticleTitle(e.target.value)}
-        onKeyUp={(e) => {
-          if (e.key === "Enter")
-            handleEditSubmit();
-        }}
-        className="w-full"
-        size="120"
-        autoFocus
-      /> :
-      <h3 className="text-lg font-medium">{title}</h3>
-  }
+  // const renderArticleTitle = () => {
+  //   return isEditing ?
+  //     <input
+  //       type="text"
+  //       value={articleTitle}
+  //       onChange={e => setArticleTitle(e.target.value)}
+  //       onKeyUp={(e) => {
+  //         if (e.key === "Enter")
+  //           handleEditSubmit();
+  //       }}
+  //       className="w-full"
+  //       size="120"
+  //       autoFocus
+  //     /> :
+  // }
 
   return (
     <li className="border-b border-neutral-300 article-item ">
@@ -41,7 +40,7 @@ const Article = ({ id, title, isComplete, content, image, category, tags, onDele
           className="max-w-40 aspect-square object-cover rounded-lg"
         />
         <div className="grid grid-rows-3 h-full">
-          {renderArticleTitle()}
+          <h3 className="text-lg font-medium">{title}</h3>
           <p className="text-wrap">{content}</p>
           {/* sub-info */}
           <div className="self-end article-sub-info">

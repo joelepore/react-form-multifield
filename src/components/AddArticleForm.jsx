@@ -21,7 +21,7 @@ const initialFormData = {
 
 const tags = ['Innovazione', 'Tecnologia', 'Natura', 'News'];
 
-const AddArticleForm = ({ onSubmit }) => {
+const AddArticleForm = ({ onSubmit, editingArticle, onEditSubmit }) => {
   const [formData, setFormData] = useState(initialFormData);
 
   const handleFormData = (e) => {
@@ -58,9 +58,21 @@ const AddArticleForm = ({ onSubmit }) => {
     }
   }, [formData.isComplete])
 
+  useEffect(() => {
+    if (editingArticle !== null) {
+      setFormData(editingArticle);
+    }
+  }, [editingArticle]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit(formData)
+
+    if (editingArticle) {
+      onEditSubmit(formData);
+      editingArticle = null;
+    } else {
+      onSubmit(formData)
+    }
     // Reset state after submit
     setFormData(initialFormData);
   }
@@ -153,7 +165,6 @@ const AddArticleForm = ({ onSubmit }) => {
           {tags.map((tag, index) => (
             <div key={`tag-${index}`} className="flex items-center gap-2">
               <input
-
                 type="checkbox"
                 name={`check-${tag}`}
                 onChange={handleFormData}
