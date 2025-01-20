@@ -26,6 +26,21 @@ const AddArticleForm = ({ onSubmit }) => {
     let value;
     if (e.target.name === 'isComplete') {
       value = e.target.id === 'radio-draft' ? false : true;
+    } else if (e.target.name.startsWith('check')) {
+      // Checkbox
+      value = e.target.name.split('-').slice(1).join(' ');
+      if (e.target.checked) {
+        setFormData({
+          ...formData,
+          tags: [...formData.tags, value]
+        })
+      } else {
+        setFormData({
+          ...formData,
+          tags: formData.tags.filter(tag => tag !== value)
+        })
+      }
+      return;
     } else {
       value = e.target.value;
     }
@@ -75,6 +90,7 @@ const AddArticleForm = ({ onSubmit }) => {
             <span className="tooltip-next">Fatti suggerire un titolo dall'AI</span>
           </div>
         </div>
+        {/* Content */}
         <span className="mr-4">Contenuto</span>
         <textarea
           name="content"
@@ -123,6 +139,22 @@ const AddArticleForm = ({ onSubmit }) => {
           <option value="business">Business</option>
           <option value="cucina">Cucina</option>
         </select>
+        {/* Tags */}
+        <span className="mr-4">Tags</span>
+        <div>
+          <div className="flex items-center gap-2">
+            <input type="checkbox" name="check-innovazione" onChange={handleFormData} />
+            <label>Innovazione</label>
+          </div>
+          <div className="flex items-center gap-2">
+            <input type="checkbox" name="check-ai" onChange={handleFormData} />
+            <label>Ai</label>
+          </div>
+          <div className="flex items-center gap-2">
+            <input type="checkbox" name="check-soft-skills" onChange={handleFormData} />
+            <label>Soft Skills</label>
+          </div>
+        </div>
         {/* Add Button */}
         <Button className="col-span-2" text="Aggiungi" type="submit" />
       </form>
