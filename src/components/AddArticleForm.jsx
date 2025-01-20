@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Card from "./Card"
 import Button from "./partials/Button"
 import { FaWandMagicSparkles } from "react-icons/fa6";
@@ -49,6 +49,12 @@ const AddArticleForm = ({ onSubmit }) => {
       [e.target.name]: value
     })
   }
+
+  useEffect(() => {
+    if (formData.isComplete) {
+      alert(`Sei sicuro di voler pubblicare l'articolo?`);
+    }
+  }, [formData.isComplete])
 
   const handleSubmit = (e) => {
     e.preventDefault();

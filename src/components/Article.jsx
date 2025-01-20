@@ -47,7 +47,7 @@ const Article = ({ id, title, isComplete, content, image, category, tags, onDele
           <div className="self-end article-sub-info">
             <p className="text-sm">{isComplete ? 'Completo' : 'Draft'}</p>
             <p className="text-sm">{category}</p>
-            <p className="text-xs">{tags.map(tag => (
+            <p className="text-xs justify-self-end">{tags.map(tag => (
               <span className="mx-2 bg-neutral-200 px-2 rounded-lg">{tag}</span>
             ))}
             </p>
