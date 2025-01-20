@@ -19,6 +19,8 @@ const initialFormData = {
   image: '',
 }
 
+const tags = ['Innovazione', 'Tecnologia', 'Natura', 'News'];
+
 const AddArticleForm = ({ onSubmit }) => {
   const [formData, setFormData] = useState(initialFormData);
 
@@ -145,18 +147,17 @@ const AddArticleForm = ({ onSubmit }) => {
         {/* Tags */}
         <span className="mr-4">Tags</span>
         <div>
-          <div className="flex items-center gap-2">
-            <input type="checkbox" name="check-innovazione" onChange={handleFormData} />
-            <label>Innovazione</label>
-          </div>
-          <div className="flex items-center gap-2">
-            <input type="checkbox" name="check-ai" onChange={handleFormData} />
-            <label>Ai</label>
-          </div>
-          <div className="flex items-center gap-2">
-            <input type="checkbox" name="check-soft-skills" onChange={handleFormData} />
-            <label>Soft Skills</label>
-          </div>
+          {tags.map((tag, index) => (
+            <div className="flex items-center gap-2">
+              <input
+                key={`tag-${index}`}
+                type="checkbox"
+                name={`check-${tag}`}
+                onChange={handleFormData}
+                checked={formData.tags.includes(tag)} />
+              <label>{tag}</label>
+            </div>
+          ))}
         </div>
         {/* Add Button */}
         <Button className="col-span-2" text="Aggiungi" type="submit" />
