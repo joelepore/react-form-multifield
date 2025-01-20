@@ -75,6 +75,12 @@ const AddArticleForm = ({ onSubmit }) => {
             <span className="tooltip-next">Fatti suggerire un titolo dall'AI</span>
           </div>
         </div>
+        <span className="mr-4">Contenuto</span>
+        <textarea
+          name="content"
+          onChange={handleFormData}
+          className="border border-neutral-300 rounded-lg px-1"
+        ></textarea>
         {/* State */}
         <span className="mr-4">Stato</span>
         <div className="flex gap-2">
