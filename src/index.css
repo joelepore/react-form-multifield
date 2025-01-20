@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: 'Instrument Sans';
+  background-color: #F9FAFB;
+}
+
+.tooltip {
+  position: relative;
+
+  .tooltip-next {
+    position: absolute;
+    top: 100%;
+    margin-top: 0.5rem;
+    left: -90px;
+    width: 180px;
+    text-align: center;
+    background-color: #f9fafb;
+    border: 1px solid gray;
+    color: black;
+    border-radius: 8px;
+    display: none;
+  }
+
+  &:hover .tooltip-next {
+    display: inline-block;
+  }
+}
+
+.article-form {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+}
+
+.article-item:last-child {
+  border: none;
+}
