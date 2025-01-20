@@ -3,6 +3,7 @@ import Card from "./Card"
 import Button from "./partials/Button"
 import { FaWandMagicSparkles } from "react-icons/fa6";
 import { GoogleGenerativeAI } from "@google/generative-ai";
+import UnsplashImageFinder from "./UnsplashImageFinder";
 
 const apiKey = `AIzaSyDqYJ-TGtoQsEAeQUBQRy5c-WQKwx13LjI`;
 const genAI = new GoogleGenerativeAI(apiKey);
@@ -12,6 +13,7 @@ const prompt = "Write a single short blog article title about tech. Write only t
 const AddArticleForm = ({ onSubmit }) => {
   const [title, setTitle] = useState('');
   const [isComplete, setIsComplete] = useState(false);
+  const [selectedImg, setSelectedImg] = useState(null);
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -26,6 +28,10 @@ const AddArticleForm = ({ onSubmit }) => {
 
   const handleIsComplete = (e) => {
     setIsComplete(e.target.id === 'radio-draft' ? false : true);
+  }
+
+  const handleImageSelect = (url) => {
+    setSelectedImg(url);
   }
 
   const getTitleSuggestionFromGemini = async () => {
@@ -78,6 +84,14 @@ const AddArticleForm = ({ onSubmit }) => {
             <label htmlFor="radio-completo" className="text-sm">Completo</label>
           </div>
         </div>
+        <span>Immagine</span>
+        <UnsplashImageFinder onImageSelect={handleImageSelect} />
+        {selectedImg &&
+          <img
+            src={selectedImg}
+            alt="Immagine selezionata"
+            className="col-start-2 aspect-square max-w-40 object-cover"
+          />}
         <Button className="col-span-2" text="Aggiungi" onClick={handleClick} />
       </form>
     </Card>

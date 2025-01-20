@@ -38,7 +38,11 @@ function App() {
       <div className="max-w-screen-sm mx-auto">
         <AddArticleForm onSubmit={handleAddArticle} />
         <h2 className="py-4 font-bold text-2xl text-center">Articoli recenti</h2>
-        <ArticleList articles={articleList} onDelete={handleDeleteArticle} onEdit={handleEditArticle} />
+        <ArticleList
+          articles={articleList}
+          onDelete={handleDeleteArticle}
+          onEdit={handleEditArticle}
+        />
       </div>
     </>
   )
