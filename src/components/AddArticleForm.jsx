@@ -13,7 +13,7 @@ const prompt = "Write a single short blog article title about tech. Write only t
 const initialFormData = {
   title: '',
   content: '',
-  category: '',
+  category: 'default',
   tags: [],
   isComplete: false,
   image: '',
@@ -112,6 +112,7 @@ const AddArticleForm = ({ onSubmit }) => {
               name="isComplete"
               className="mr-1"
               onChange={handleFormData}
+              checked={!formData.isComplete}
             />
             <label htmlFor="radio-draft" className="text-sm">Draft</label>
           </div>
@@ -122,6 +123,7 @@ const AddArticleForm = ({ onSubmit }) => {
               name="isComplete"
               className="mr-1"
               onChange={handleFormData}
+              checked={formData.isComplete}
             />
             <label htmlFor="radio-completo" className="text-sm">Completo</label>
           </div>
@@ -137,7 +139,8 @@ const AddArticleForm = ({ onSubmit }) => {
           />}
         {/* Category */}
         <span className="mr-4">Categoria</span>
-        <select name="category" onChange={handleFormData}>
+        <select name="category" onChange={handleFormData} value={formData.category}>
+          <option value="default">Seleziona una categoria</option>
           <option value="Tecnologia">Tecnologia</option>
           <option value="Fitness">Fitness</option>
           <option value="Viaggi">Viaggi</option>
@@ -148,9 +151,9 @@ const AddArticleForm = ({ onSubmit }) => {
         <span className="mr-4">Tags</span>
         <div>
           {tags.map((tag, index) => (
-            <div className="flex items-center gap-2">
+            <div key={`tag-${index}`} className="flex items-center gap-2">
               <input
-                key={`tag-${index}`}
+
                 type="checkbox"
                 name={`check-${tag}`}
                 onChange={handleFormData}
