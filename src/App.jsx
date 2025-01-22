@@ -34,10 +34,6 @@ function App() {
     setArticleList(articleList.map(article => article.id === newArticleData.id ? newArticleData : article));
   }
 
-  useEffect(() => {
-    console.log(articleList);
-  }, [articleList])
-
   return (
     <>
       <h1 className="text-4xl font-bold text-center py-4">Il tuo blog</h1>

@@ -31,17 +31,16 @@ const AddArticleForm = ({ onSubmit, editingArticle, onEditSubmit }) => {
     } else if (e.target.name.startsWith('check')) {
       // Checkbox
       value = e.target.name.split('-').slice(1).join(' ');
+      let tags = []
       if (e.target.checked) {
-        setFormData({
-          ...formData,
-          tags: [...formData.tags, value]
-        })
+        tags = [...formData.tags, value];
       } else {
-        setFormData({
-          ...formData,
-          tags: formData.tags.filter(tag => tag !== value)
-        })
+        tags = formData.tags.filter(tag => tag !== value)
       }
+      setFormData({
+        ...formData,
+        tags
+      })
       return;
     } else {
       value = e.target.value;
